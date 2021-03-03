@@ -5,4 +5,8 @@ class Product
     @price = params[:price]
     @stock = params[:stock]
   end
+
+  def to_s
+    "#{@price} руб. в т.ч. НДС (осталось #{@stock} шт.)"
+  end
 end
