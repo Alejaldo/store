@@ -1,7 +1,8 @@
 class ProductCollection
   PRODUCT_TYPES = {
     film: {dir: 'movies', class: Movie},
-    book: {dir: 'books', class: Book}
+    book: {dir: 'books', class: Book},
+    disc: {dir: 'discs', class: Disc}
   }
 
   def initialize(products = [])
@@ -34,7 +35,7 @@ class ProductCollection
     when :price
       @products.sort_by! { |product| product.price }
     when :amount
-      @products.sort_by! { |product| product.amount }
+      @products.sort_by! { |product| product.stock }
     end
 
     @products.reverse! if params[:order] == :asc
