@@ -2,12 +2,13 @@ require_relative 'lib/product'
 require_relative 'lib/movie'
 require_relative 'lib/book'
 require_relative 'lib/disc'
+require_relative 'lib/cart'
 require_relative 'lib/product_collection'
 
 collection = ProductCollection.from_dir("#{__dir__}/data").sort!(by: :price, order: :asc).to_a
 
 user_input = nil
-cart = { cost: 0, content: [] }
+cart = Cart.new
 
 until user_input == 0
   puts 'Что хотите купить:'
@@ -28,14 +29,14 @@ until user_input == 0
     puts "Купите что-нибудь другое, этого уже у нас нет!"
   else 
     selected_product.stock -= 1
-    cart[:cost] += selected_product.price
-    cart[:content].push(selected_product)
+    cart.cost_count(selected_product.price)
+    cart.content_count(selected_product)
   end
 
   puts "\nВы выбрали: #{selected_product}\n\n"
-  puts "Всего товаров на сумму: #{cart[:cost]}\n\n"
+  puts "Всего товаров на сумму: #{cart.cost}\n\n"
 end
 
 puts "Вы купили:\n\n"
-puts cart[:content]
-puts "\nС Вас - #{cart[:cost]} руб. в т.ч. НДС. Спасибо за покупки!"
+puts cart.content
+puts "\nС Вас - #{cart.cost} руб. в т.ч. НДС. Спасибо за покупки!"
