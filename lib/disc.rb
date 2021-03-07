@@ -9,8 +9,8 @@ class Disc < Product
       author: lines[1],
       genre: lines[2],
       year: lines[3].to_i,
-      price: lines[3].to_i,
-      stock: lines[4].to_i
+      price: lines[4].to_i,
+      stock: lines[5].to_i
     )
   end
 

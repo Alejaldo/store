@@ -34,7 +34,7 @@ class ProductCollection
       @products.sort_by! { |product| product.to_s }
     when :price
       @products.sort_by! { |product| product.price }
-    when :amount
+    when :stock
       @products.sort_by! { |product| product.stock }
     end
 
