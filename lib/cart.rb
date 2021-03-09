@@ -5,12 +5,9 @@ class Cart
     @cost = cost
     @content = content
   end
-  
-  def cost_count(product_price)
-    @cost += product_price
-  end
 
-  def content_count(product)
-    @content.push(product)
+  def add(product)
+    @content << product
+    @cost += product.price
   end
 end
