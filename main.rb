@@ -38,6 +38,6 @@ end
 
 puts "Вы купили:\n\n"
 
-cart.cheque.each { |product| puts product }
+puts cart
 
 puts "\nС Вас - #{cart.cost} руб. в т.ч. НДС. Спасибо за покупки!"

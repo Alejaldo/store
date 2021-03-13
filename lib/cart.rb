@@ -11,21 +11,11 @@ class Cart
     @cost += product.price
   end
 
-  def cheque
-    quantity = @content.map do |product|
-      product.show_without_stock
-    end.tally
+  def to_s
+    @content.tally.map.with_index(1) do |(product, qty), id|
+      price = product.price
 
-    cheque_hash = Hash.new(0)
-
-    @content.each do |product|
-      cheque_hash[product.show_without_stock] = [product.price, quantity[product.show_without_stock]]
-    end
-
-    cheque_output = cheque_hash.map.with_index(1) do |(product, params), index|
-      "#{index}) -- #{product} | #{params[0]} * #{params[1]}    = #{params[0] * params[1]} руб. в т.ч. НДС"
-    end
-
-    return cheque_output
+      "#{id}) -- #{product.show_without_stock} | #{price} * #{qty}    = #{price * qty} руб. в т.ч. НДС"
+    end.join("\n")
   end
 end
